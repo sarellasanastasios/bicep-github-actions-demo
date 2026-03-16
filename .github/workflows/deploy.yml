@@ -30,3 +30,7 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./main.bicep
+          parameters: |
+            adminPublicKey="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCtOGSMiemTOHa04zSvs/9ZDTVW9AehvBcsJ1b7tRhDIZ//RbjryrCiUueoGupPy7PjIprJTXcRtiF5evOnrS4G675zmK3ZP8fBDRdCAlmmY4MSvNAvVZ+JZijABoxn/r6MIF6cSHmLXyo+Tu68t6cxD7ttsAklSWSfRME8rS10tyhv8cTBPqnLhXx8DIvYdpHgwU0o6ZCuIH2w4si/HUXLVFlCvqYJ733Ji5al/7AFMRyEvK5mDNG/IrpBTq+fRZMFabh4k2a9NlHXIXx7dttQX6CPWTO/yT1ok2qbVA2H9FZy6osTccdnjHetuQ/4XYIiIyK2VIDXhS/etmGkM9uzfTkyEV2Rc7QYtSy/eX5glj3J5ln3jeXBaHiF0wOpQz86IzWJj0MluIb8pJNmqQUadhAaNKF4D3oIu4oS0oZy+o/XeTnQ9ZxxJQtIEOnb0jwB9K4l+1NqxJO7cGurcV2jxA5rvruMpz+052r5BJtXMJ/Mx7h0ED7IEy/NJpSczYLzWuOfgi30QhiLeogfvclqqOSESUXe/54zicesI+/eyihN3shDS0QpelLPD2dRHaiT7W7po4x/DFhXwrjZJG0o4jKfO/dLaJs1yBI1pVwYoMZMOQ9k2DrqZdAQiAHzaPeH9VNAY4cGzR31QamP7hrvNzYRLccFXjBPZ5tVOb/64w== azurevm"
+          
+      
