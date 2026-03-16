@@ -1,13 +1,11 @@
+param storageName string = 'st${uniqueString(resourceGroup().id)}'
 param location string = resourceGroup().location
 
-resource demo 'Microsoft.Resources/deployments@2021-04-01' = {
-  name: 'demoDeployment'
-  properties: {
-    mode: 'Incremental'
-    template: {
-      '$schema': 'https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#'
-      contentVersion: '1.0.0.0'
-      resources: []
-    }
+resource stg 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: storageName
+  location: location
+  sku: {
+    name: 'Standard_LRS'
   }
+  kind: 'StorageV2'
 }
