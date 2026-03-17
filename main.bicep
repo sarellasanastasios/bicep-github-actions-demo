@@ -3,7 +3,7 @@ param adminPublicKey string
 
 resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {
   name: 'myVnet'
-  location: 'westeurope'
+  location: 'northeurope'
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -57,7 +57,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-09-01' = {
   location: resourceGroup().location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_A1_V2'
+      vmSize: 'Standard_B1s'
     }
     osProfile: {
       computerName: 'myLinuxVM'
