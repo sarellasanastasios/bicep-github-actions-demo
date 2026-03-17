@@ -94,6 +94,9 @@ resource lb 'Microsoft.Network/loadBalancers@2023-09-01' = {
 resource vmss 'Microsoft.Compute/virtualMachineScaleSets@2023-09-01' = {
   name: vmssName
   location: resourceGroup().location
+  zones: [
+    '1'
+  ]
   sku: {
     name: 'Standard_D2s_v3'
     tier: 'Standard'
