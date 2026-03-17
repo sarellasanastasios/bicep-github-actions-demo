@@ -142,6 +142,83 @@ resource vmss 'Microsoft.Compute/virtualMachineScaleSets@2023-09-01' = {
           }
         ]
       }
+      extensionProfile: {
+        extensions: [
+          {
+            name: 'installIIS'
+            properties: {
+              publisher: 'Microsoft.Compute'
+              type: 'CustomScriptExtension'
+              typeHandlerVersion: '1.10'
+              autoUpgradeMinorVersion: true
+              settings: {
+                fileUris: []
+                commandToExecute: 'powershell -ExecutionPolicy Unrestricted -Command "Install-WindowsFeature -Name Web-Server; New-Item -Path C:\\inetpub\\wwwroot\\index.html -ItemType File -Force -Value \"<h1>VMSS IIS Instance</h1>\" "'
+              }
+            }
+          }
+        ]
+      }
     }
+  }
+}
+
+resource autoscale 'Microsoft.Insights/autoscaleSettings@2022-10-01' = {
+  name: 'vmssAutoscale'
+  location: resourceGroup().location
+  properties: {
+    name: 'vmssAutoscale'
+    targetResourceUri: vmss.id
+    enabled: true
+    profiles: [
+      {
+        name: 'defaultProfile'
+        capacity: {
+          minimum: '2'
+          maximum: '5'
+          default: '2'
+        }
+        rules: [
+          {
+            metricTrigger: {
+              metricName: 'Percentage CPU'
+              metricNamespace: ''
+              metricResourceUri: vmss.id
+              timeGrain: 'PT1M'
+              statistic: 'Average'
+              timeWindow: 'PT5M'
+              timeAggregation: 'Average'
+              operator: 'GreaterThan'
+              threshold: 70
+            }
+            scaleAction: {
+              direction: 'Increase'
+              type: 'ChangeCount'
+              value: '1'
+              cooldown: 'PT5M'
+            }
+          }
+          {
+            metricTrigger: {
+              metricName: 'Percentage CPU'
+              metricNamespace: ''
+              metricResourceUri: vmss.id
+              timeGrain: 'PT1M'
+              statistic: 'Average'
+              timeWindow: 'PT5M'
+              timeAggregation: 'Average'
+              operator: 'LessThan'
+              threshold: 30
+            }
+            scaleAction: {
+              direction: 'Decrease'
+              type: 'ChangeCount'
+              value: '1'
+              cooldown: 'PT5M'
+            }
+          }
+        ]
+      }
+    ]
   }
 }
