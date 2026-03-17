@@ -1,3 +1,4 @@
+# force update
 name: Deploy Bicep to Azure
 
 on:
