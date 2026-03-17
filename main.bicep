@@ -57,7 +57,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2023-09-01' = {
   location: resourceGroup().location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_B1ms'
+      vmSize: 'Standard_B1s'
     }
     osProfile: {
       computerName: 'myLinuxVM'
