@@ -3,7 +3,7 @@ param adminPublicKey string
 
 resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {
   name: 'myVnet'
-  location: 'northeurope'
+  location: 'westeurope'
   properties: {
     addressSpace: {
       addressPrefixes: [
