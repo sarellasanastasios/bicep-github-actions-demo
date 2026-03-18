@@ -83,7 +83,7 @@ resource lb 'Microsoft.Network/loadBalancers@2023-09-01' = {
             id: resourceId('Microsoft.Network/loadBalancers/backendAddressPools', lb.name, 'vmssBackendPool')
           }
           probe: {
-            id: lb.properties.probes[0].id
+            id: resourceId('Microsoft.Network/loadBalancers/probes', lb.name, 'tcpProbe') }
           }
         }
       }
