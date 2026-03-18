@@ -199,7 +199,7 @@ resource autoscale 'Microsoft.Insights/autoscaleSettings@2022-10-01' = {
               value: '1'
               cooldown: 'PT5M'
             }
-          }
+          },
           {
             metricTrigger: {
               metricName: 'Percentage CPU'
