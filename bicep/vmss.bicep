@@ -77,10 +77,10 @@ resource lb 'Microsoft.Network/loadBalancers@2023-09-01' = {
           idleTimeoutInMinutes: 4
           loadDistribution: 'Default'
           frontendIPConfiguration: {
-            id: resourceid('Microsoft.Network/loadBalancers/frontendIPConfigurations', lb.name, 'LoadBalancerFrontEnd')
+            id: resourceId('Microsoft.Network/loadBalancers/frontendIPConfigurations', lb.name, 'LoadBalancerFrontEnd')
           }
           backendAddressPool: {
-            id: resourceid('Microsoft.Network/loadBalancers/backendAddressPools', lb.name, 'vmssBackendPool')
+            id: resourceId('Microsoft.Network/loadBalancers/backendAddressPools', lb.name, 'vmssBackendPool')
           }
           probe: {
             id: lb.properties.probes[0].id
