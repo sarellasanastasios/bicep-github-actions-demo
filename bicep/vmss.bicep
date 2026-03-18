@@ -77,10 +77,10 @@ resource lb 'Microsoft.Network/loadBalancers@2023-09-01' = {
           idleTimeoutInMinutes: 4
           loadDistribution: 'Default'
           frontendIPConfiguration: {
-            id: resourceID('Microsoft.Network/loadBalancers/frontendIPConfigurations', lb.name, 'LoadBalancerFrontEnd')
+            id: resourceid('Microsoft.Network/loadBalancers/frontendIPConfigurations', lb.name, 'LoadBalancerFrontEnd')
           }
           backendAddressPool: {
-            id: resourceID('Microsoft.Network/loadBalancers/backendAddressPools', lb.name, 'vmssBackendPool')
+            id: resourceid('Microsoft.Network/loadBalancers/backendAddressPools', lb.name, 'vmssBackendPool')
           }
           probe: {
             id: lb.properties.probes[0].id
@@ -156,7 +156,7 @@ resource vmss 'Microsoft.Compute/virtualMachineScaleSets@2023-09-01' = {
               autoUpgradeMinorVersion: true
               settings: {
                 fileUris: []
-                commandToExecute: ''' powershell -ExecutionPolicy Unrestricted -Command "Install-WindowsFeature -Name Web-Server; New-Item -Path C:\inetpub\wwwroot\index.html -ItemType File -Force -Value '<h1>VMSS IIS Instance</h1>' '' 
+                commandToExecute: ''' powershell -ExecutionPolicy Unrestricted -Command "Install-WindowsFeature -Name Web-Server; New-Item -Path C:\inetpub\wwwroot\index.html -ItemType File -Force -Value '<h1>VMSS IIS Instance</h1>''' 
               }
             }
           }
